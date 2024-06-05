@@ -88,19 +88,25 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetButtonDown("Jump"))
         {
+            Debug.Log("Intentando saltar");
             RaycastHit hit;
-            if (Physics.Raycast(transform.position, Vector3.down, out hit, 1.1f))
+            if (Physics.Raycast(transform.position, Vector3.down, out hit, 1.6f))
             {
+                Debug.Log("En el suelo, saltando");
                 rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            }
+            else
+            {
+                Debug.Log("No en el suelo");
             }
         }
 
-        // Aplica una gravedad aumentada para una caída más realista
         if (rb.velocity.y < 0)
         {
             rb.velocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
         }
     }
+
 
     void Crouch()
     {
@@ -108,7 +114,7 @@ public class PlayerController : MonoBehaviour
         {
             if (!isCrouching)
             {
-                transform.localScale = new Vector3(1, crouchHeight, 1);
+                transform.localScale = new Vector3(1.5f, crouchHeight, 1.5f);
                 isCrouching = true;
             }
         }
@@ -116,7 +122,7 @@ public class PlayerController : MonoBehaviour
         {
             if (isCrouching)
             {
-                transform.localScale = Vector3.one;
+                transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
                 isCrouching = false;
             }
         }
