@@ -39,11 +39,13 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         MovePlayer();
-        RotatePlayer();
         RotateCamera();
         Jump();
         Crouch();
         Interact();
+
+        // Dibujar el raycast en la escena
+        Debug.DrawRay(playerCamera.position, playerCamera.forward * 2f, Color.green, 1f);
     }
 
     void MovePlayer()
@@ -62,20 +64,17 @@ public class PlayerController : MonoBehaviour
         float horizontalMove = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
         float verticalMove = Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime;
 
+        // Obtener la dirección de movimiento relativa a la cámara
         Vector3 cameraForward = playerCamera.forward;
-        cameraForward.y = 0;
+        cameraForward.y = 0; // Mantener la dirección horizontal
         Vector3 cameraRight = playerCamera.right;
 
-        Vector3 moveDirection = cameraForward.normalized * verticalMove + cameraRight.normalized * horizontalMove;
+        // Calcular la dirección de movimiento en función de la entrada del jugador y la dirección de la cámara
+        Vector3 moveDirection = (cameraForward.normalized * verticalMove) + (cameraRight.normalized * horizontalMove);
 
         rb.MovePosition(rb.position + moveDirection);
     }
 
-    void RotatePlayer()
-    {
-        float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
-        transform.Rotate(Vector3.up * mouseX);
-    }
 
     void RotateCamera()
     {
