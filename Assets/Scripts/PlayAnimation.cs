@@ -13,7 +13,10 @@ public class PlayAnimation : MonoBehaviour
         if (animator != null)
         {
             animator.SetTrigger("Crash");
-            source.PlayOneShot(clip);
+            if (clip != null && source != null)
+            {
+                source.PlayOneShot(clip);
+            }
         }
     }
 }

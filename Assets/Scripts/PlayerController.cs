@@ -1,28 +1,29 @@
 using UnityEngine;
+using Cinemachine;
 
 public class PlayerController : MonoBehaviour
 {
-
-
-    [Space(5)]
     [Header("Crouch Settings")]
     public float crouchHeight = 0.5f;
+
+    [Header("Cinemachine Settings")]
+    public CinemachineVirtualCamera playerCamera; // La cámara de Cinemachine
+    public NoiseSettings normalNoiseProfile; // El perfil de ruido normal
+    public NoiseSettings shakeNoiseProfile; // El perfil de ruido para el shake
 
     private bool isCrouching = false;
 
     void Start()
     {
-
         Cursor.lockState = CursorLockMode.Locked;
+
     }
 
     void Update()
     {
-
         Crouch();
-
+        HandleNoiseProfile();
     }
-
 
     void Crouch()
     {
@@ -44,4 +45,15 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    void HandleNoiseProfile()
+    {
+        if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+        {
+            playerCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_NoiseProfile = shakeNoiseProfile;
+        }
+        else
+        {
+            playerCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_NoiseProfile = normalNoiseProfile;
+        }
+    }
 }
