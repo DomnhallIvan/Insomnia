@@ -21,6 +21,10 @@ public class PlayerController : MonoBehaviour
     public Transform playerCamera;
     public float mouseSensitivity = 100f;
 
+    [Space(5)]
+    [Header("Gravity Settings")]
+    public float fallMultiplier = 2.5f; // Factor de multiplicación para la caída
+
     private Rigidbody rb;
     private bool isCrouching = false;
     private float xRotation = 0f;
@@ -90,6 +94,12 @@ public class PlayerController : MonoBehaviour
             {
                 rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             }
+        }
+
+        // Aplica una gravedad aumentada para una caída más realista
+        if (rb.velocity.y < 0)
+        {
+            rb.velocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
         }
     }
 
