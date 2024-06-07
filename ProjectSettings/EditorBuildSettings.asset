@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Catacumbas.unity
+    guid: a2c582ade4e98eb4dab9b0212f852d77
+  - enabled: 1
+    path: Assets/Scenes/Laberinto.unity
+    guid: a18a03dc8e20eff4583b601504e3c68e
   m_configObjects: {}

@@ -17,6 +17,10 @@ public class NormalEnemyScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        agent.destination=player.position;
+        if(agent.destination != null)
+        {
+            agent.destination = player.position;
+        }
+      
     }
 }
