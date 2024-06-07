@@ -14,11 +14,29 @@ public class FastEnemy : MonoBehaviour
     void Start()
     {
         _agent = GetComponent<NavMeshAgent>();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        _agent.destination = _player.position;
+        // _agent.destination = _player.position;
+        Angel();
+    }
+
+    void Angel()
+    {
+        Plane[] planes = GeometryUtility.CalculateFrustumPlanes(_playerCam);
+
+        if (GeometryUtility.TestPlanesAABB(planes, this.gameObject.GetComponent<Renderer>().bounds))
+        {
+            _agent.speed = 0;
+            _agent.SetDestination(transform.position);
+        }
+        if (!GeometryUtility.TestPlanesAABB(planes, this.gameObject.GetComponent<Renderer>().bounds))
+        {
+            _agent.speed = aISpeed;
+            _agent.destination = _player.position;
+        }
     }
 }
