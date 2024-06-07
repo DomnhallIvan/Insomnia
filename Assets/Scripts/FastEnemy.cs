@@ -8,15 +8,20 @@ public class FastEnemy : MonoBehaviour
 {
     [SerializeField] Transform _player;
     [SerializeField] NavMeshAgent _agent;
+    [SerializeField] AudioSource _enemySoundSource;
+    [SerializeField] AudioClip[] _enemyFootsteps;
+    [SerializeField] AudioClip _enemyScream;
     [SerializeField] Camera _playerCam,jumpscareCam;
-    [SerializeField] float aISpeed,catchDistance,jumpscareTime;
+    [SerializeField] float aISpeed,catchDistance,jumpscareTime, footstepInterval;
     [SerializeField] string sceneAfterDeath;
+    private int _currentFootstepIndex = 0;
+    private float _footstepTimer;
 
     // Start is called before the first frame update
     void Start()
     {
         _agent = GetComponent<NavMeshAgent>();
-        
+        _footstepTimer = footstepInterval;
     }
 
     // Update is called once per frame
@@ -46,12 +51,35 @@ public class FastEnemy : MonoBehaviour
                 jumpscareCam.gameObject.SetActive(true);
                 StartCoroutine(killPlayer());
             }
+            PlayFootsteps();
         }
     }
 
+    void PlayFootsteps()
+    {
+        if (_agent.velocity.magnitude > 0.1f)
+        {
+            _footstepTimer -= Time.deltaTime;
+            if (_footstepTimer <= 0f && !_enemySoundSource.isPlaying)
+            {
+                _enemySoundSource.clip = _enemyFootsteps[_currentFootstepIndex];
+                _enemySoundSource.PlayOneShot(_enemySoundSource.clip);
+
+                _currentFootstepIndex = (_currentFootstepIndex + 1) % _enemyFootsteps.Length;
+                _footstepTimer = footstepInterval;
+            }
+        }
+        else
+        {
+            _footstepTimer = footstepInterval;
+        }
+    }
+
+
     IEnumerator killPlayer()
     {
-        yield return new WaitForSeconds(jumpscareTime);
+        _enemySoundSource.PlayOneShot(_enemyScream);
+        yield return new WaitForSeconds(_enemyScream.length);
         SceneManager.LoadScene(sceneAfterDeath);
     }
 }
