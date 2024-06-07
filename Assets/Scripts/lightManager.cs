@@ -1,15 +1,37 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI; // Necesario para trabajar con UI elements
+using System;
 
-public class light : MonoBehaviour
+
+public class lightManager : MonoBehaviour
 {
-    public Light spotlight;         // El spotlight que vamos a controlar
-    public GameObject panel;        // El panel que vamos a mostrar
     private bool isPlayerInTrigger; // Bandera para saber si el jugador está en el trigger
-    public GameObject destroy;
+
+    [Header("Light")]
+    public GameObject postOn;
+    public GameObject postOff;
+
+    [Space(3)]
+    [Header("Particles")]
     public ParticleSystem particlesStop;
+    public GameObject destroy;
+
+    [Space(3)]
+    [Header("UI")]
     public GameObject text;
+    public GameObject panel;        // El panel que vamos a mostrar
+    public Slider progressBar; // Añade esta línea
+
+    [Space(3)]
+    [Header("Audio")]
+    public AudioSource audiosource;
+    public AudioClip clip;
+
+    
+
+    public event Action SliderCompleted;
 
     void Start()
     {
@@ -50,13 +72,20 @@ public class light : MonoBehaviour
         }
     }
 
-    System.Collections.IEnumerator IncreaseIntensityDestroyAndStopParticles()
+    IEnumerator IncreaseIntensityDestroyAndStopParticles()
     {
-        // Esperamos 5 segundos
-        yield return new WaitForSeconds(3);
+        progressBar.gameObject.SetActive(true);
+        float duration = 3f; // Duración en segundos
+        float elapsedTime = 0f;
 
-        // Aumentamos la intensidad del spotlight a 9
-        spotlight.intensity = 9f;
+        while (elapsedTime < duration)
+        {
+            elapsedTime += Time.deltaTime;
+            progressBar.value = Mathf.Clamp01(elapsedTime / duration);
+            yield return null; // Esperamos un frame
+        }
+
+        audiosource.PlayOneShot(clip);
 
         if (destroy != null)
         {
@@ -71,5 +100,22 @@ public class light : MonoBehaviour
         {
             Destroy(text);
         }
+
+        if (progressBar != null)
+        {
+            Destroy(progressBar);
+        }
+
+        if (postOff != null)
+        {
+            postOff.gameObject.SetActive(false);
+        }
+
+        if (postOn != null)
+        {
+            postOn.gameObject.SetActive(true);
+        }
+
+        SliderCompleted?.Invoke();
     }
 }
