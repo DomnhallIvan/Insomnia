@@ -18,6 +18,8 @@ public class SwitchManager : MonoBehaviour
     // Referencias a los scripts light
     public lightManager[] lightScripts;
 
+    public GameObject DoorForest;
+
     void Start()
     {
         UpdateCycleText();
@@ -58,6 +60,7 @@ public class SwitchManager : MonoBehaviour
             // Aquí puedes añadir lógica adicional para cuando se completen todos los ciclos
             Debug.Log("Todos los ciclos completados!");
             audioSource.PlayOneShot(clip);
+            DoorForest.SetActive(false);
         }
     }
 

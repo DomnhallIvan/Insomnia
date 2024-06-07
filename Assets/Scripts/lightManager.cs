@@ -27,9 +27,10 @@ public class lightManager : MonoBehaviour
     [Space(3)]
     [Header("Audio")]
     public AudioSource audiosource;
+    public AudioSource audiosourceLight;
     public AudioClip clip;
 
-    
+
 
     public event Action SliderCompleted;
 
@@ -74,6 +75,7 @@ public class lightManager : MonoBehaviour
 
     IEnumerator IncreaseIntensityDestroyAndStopParticles()
     {
+        audiosourceLight.Play();
         progressBar.gameObject.SetActive(true);
         float duration = 3f; // Duración en segundos
         float elapsedTime = 0f;
@@ -84,7 +86,7 @@ public class lightManager : MonoBehaviour
             progressBar.value = Mathf.Clamp01(elapsedTime / duration);
             yield return null; // Esperamos un frame
         }
-
+        audiosourceLight.Stop();
         audiosource.PlayOneShot(clip);
 
         if (destroy != null)
