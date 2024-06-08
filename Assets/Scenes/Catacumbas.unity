@@ -47747,7 +47747,7 @@ PrefabInstance:
       objectReference: {fileID: 963194227}
     - target: {fileID: 4116948735612988409, guid: 07efb12723652cd428704b49f1f274dd, type: 3}
       propertyPath: sceneAfterDeath
-      value: Insomnia
+      value: Catacumbas
       objectReference: {fileID: 0}
     - target: {fileID: 4330250880295658114, guid: 07efb12723652cd428704b49f1f274dd, type: 3}
       propertyPath: m_LocalPosition.x
@@ -47867,7 +47867,7 @@ PrefabInstance:
       objectReference: {fileID: 963194227}
     - target: {fileID: 5427365872205934465, guid: 07efb12723652cd428704b49f1f274dd, type: 3}
       propertyPath: sceneAfterDeath
-      value: Insomnia
+      value: Catacumbas
       objectReference: {fileID: 0}
     - target: {fileID: 5514782402599134319, guid: 07efb12723652cd428704b49f1f274dd, type: 3}
       propertyPath: m_LocalPosition.z
