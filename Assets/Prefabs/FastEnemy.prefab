@@ -426,10 +426,11 @@ MonoBehaviour:
   _playerCam: {fileID: 0}
   jumpscareCam: {fileID: 5997194986159362119}
   aISpeed: 6.8
-  catchDistance: 2
+  catchDistance: 4
   jumpscareTime: 1
   footstepInterval: 0.5
   sceneAfterDeath: Laberinto
+  _animator: {fileID: 8273437173565530606}
 --- !u!82 &8750027943039237090
 AudioSource:
   m_ObjectHideFlags: 0
@@ -623,11 +624,41 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7709792883443893007, guid: d27bb82bbc54f8a41b9c3129ef034a94, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7367825317264382048, guid: d27bb82bbc54f8a41b9c3129ef034a94, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8273437173565530606}
   m_SourcePrefab: {fileID: 100100000, guid: d27bb82bbc54f8a41b9c3129ef034a94, type: 3}
+--- !u!1 &3744062355169728301 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7367825317264382048, guid: d27bb82bbc54f8a41b9c3129ef034a94, type: 3}
+  m_PrefabInstance: {fileID: 6181844659235557197}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &8273437173565530606
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3744062355169728301}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8de1630f792944d4b84609a9d9a3d316, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!4 &4554543513098924327 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7709792882650234474, guid: d27bb82bbc54f8a41b9c3129ef034a94, type: 3}

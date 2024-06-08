@@ -16,7 +16,7 @@ public class FastEnemy : MonoBehaviour
     [SerializeField] string sceneAfterDeath;
     private int _currentFootstepIndex = 0;
     private float _footstepTimer;
-
+    [SerializeField]private Animator _animator;
     // Start is called before the first frame update
     void Start()
     {
@@ -39,13 +39,17 @@ public class FastEnemy : MonoBehaviour
         {
             //This make it stop inmediately
             _agent.speed = 0;
+            _animator.speed = 0;
+            //_animator.SetFloat("WalkSpeed", 0f); // Freeze "Walk" animation
             //_agent.SetDestination(transform.position);
         }
         if (!GeometryUtility.TestPlanesAABB(planes, this.gameObject.GetComponent<Renderer>().bounds))
         {
             _agent.speed = aISpeed;
-            _agent.destination = _player.position; 
-            if(distance<=catchDistance)
+            _agent.destination = _player.position;
+            _animator.speed = 1;
+            //_animator.SetFloat("WalkSpeed", 1f); // Resume "Walk" animation
+            if (distance<=catchDistance)
             {
                 _player.gameObject.SetActive(false);
                 jumpscareCam.gameObject.SetActive(true);
