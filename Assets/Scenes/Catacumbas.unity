@@ -28740,11 +28740,11 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.2
-  far clip plane: 300
-  field of view: 40
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 60.000004
   orthographic: 0
-  orthographic size: 10
+  orthographic size: 5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -28768,8 +28768,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.013895705, y: -0.70960176, z: 0.014116621, w: 0.70432454}
-  m_LocalPosition: {x: 2.3757572, y: 3.865166, z: 17.888334}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.41, y: 2.206, z: 18.162}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -47653,6 +47653,18 @@ PrefabInstance:
       propertyPath: sceneAfterDeath
       value: Catacumbas
       objectReference: {fileID: 0}
+    - target: {fileID: 2240049508358050058, guid: 07efb12723652cd428704b49f1f274dd, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 404.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2240049508358050058, guid: 07efb12723652cd428704b49f1f274dd, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2240049508358050058, guid: 07efb12723652cd428704b49f1f274dd, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 280.3
+      objectReference: {fileID: 0}
     - target: {fileID: 2344321374133538517, guid: 07efb12723652cd428704b49f1f274dd, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -47891,7 +47903,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6208820483906639878, guid: 07efb12723652cd428704b49f1f274dd, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6301748679668866311, guid: 07efb12723652cd428704b49f1f274dd, type: 3}
       propertyPath: m_LocalScale.y
