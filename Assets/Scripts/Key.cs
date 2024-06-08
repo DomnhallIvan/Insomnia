@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Key : MonoBehaviour
 {
@@ -9,8 +10,11 @@ public class Key : MonoBehaviour
     [SerializeField] private AudioSource CameraAudio; //Este solo es para arreglar un bug xd
     [SerializeField] private AudioClip DoorOpened;
     [SerializeField] private AudioClip KeyCollected;
-    private int maxNumberKeys = 4;
+    [SerializeField] private int maxNumberKeys = 5;
     [SerializeField]private int currentKeys;
+
+
+    public event Action KeyObtained;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +31,7 @@ public class Key : MonoBehaviour
     {
         currentKeys++;
         PlayerAudio.PlayOneShot(KeyCollected);
+        KeyObtained?.Invoke();
         if (currentKeys == maxNumberKeys)
         {
             DoorLocked.SetActive(false);
